@@ -1,6 +1,6 @@
 {
     "java.project.sourcePaths": [
-        "PROJETO-JAVA/src",
-        "Aula02-OperadoresLogicos/src/control"
+        "Aula02-OperadoresLogicos/src/control",
+        "Aula03-POO-pesquisa-Decimal/src"
     ]
 }

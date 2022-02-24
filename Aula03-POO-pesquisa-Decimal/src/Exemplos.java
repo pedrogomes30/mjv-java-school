@@ -9,26 +9,35 @@ import java.util.Scanner;
 //documentação da própria IDE (ctrl+clique)
 
 public class Exemplos {
+    
     public static void exemploDouble(double numero1, double numero2){
         double resultado = 0;
 
         System.out.println("-- Double primitivo -- ");
-        System.out.println("devido a JVM transformar o valor double em um numero binário,\n valores deste tipo tendem a se tornar uma dizima periódica e se tornando infito com isso gera imprecisões,\n em sistemas onde cada centavo é importate em sistemas que tratam valores, pdv, sistemas bancários, etc-- ");
+        System.out.println("devido a JVM transformar o valor double em um numero binário,"+
+                        "\n valores deste tipo tendem a se tornar uma dizima periódica e se"+
+                        "tornando infito com isso gera imprecisões,\n em sistemas onde cada "+
+                        "centavo é importate em sistemas que tratam valores, pdv, sistemas bancários, etc-- ");
         System.out.println("Exemplo de imprecisão: ");
         for(int i = 0; i<=10; i++){
             resultado = i>1 ? numero1 + numero2 : numero1 + numero2;
             System.out.println(numero1+" + "+numero2+" = "+resultado);
-            numero1 += 0.1;
+            numero1 += numero1;
         }
+        
     }
+    
     public static void exemploBigDecimal(double numero1, double numero2){
         BigDecimal numero1B    = new BigDecimal(String.valueOf(numero1));
         BigDecimal numero2B    = new BigDecimal(String.valueOf(numero2));
         BigDecimal resultado;
         
         System.out.println("-- Big Decimal -- ");
-        System.out.println("já a classe Big Decimal trabalha com pontos flutuantes com precisão arbitrária,\n ou seja é possivel definir o nivel da sua precisão para os calculos");
-        System.out.println("Primeiro, é necessário covnerter os valores double do ultimo exemplo em string, pois é uma recomendação do JAVADOC");
+        System.out.println("já a classe Big Decimal trabalha com pontos flutuantes"+
+                            "com precisão arbitrária,\n ou seja é possivel definir o nivel"+
+                            "da sua precisão para os calculos");
+        System.out.println("Primeiro, é necessário converter os valores double do ultimo"+
+                             "exemplo em string, pois é uma recomendação do JAVADOC");
         for(int i = 0; i<=10; i++){
             resultado = numero1B.add(numero2B);
             System.out.println(numero1B+" + "+numero2B+" = "+resultado);
@@ -36,6 +45,13 @@ public class Exemplos {
         }
     }
 
+
+
+
+
+
+
+/*
     public static void exemplosCotidianos(){
         Scanner entrada = new Scanner(System.in);
         String  valorProduto;
@@ -88,14 +104,13 @@ public class Exemplos {
         System.out.println("");
         System.out.println("Mínimo");
         System.out.println(new BigDecimal("2.00").min(new BigDecimal("1.6")));
-     }
-    public static void calculoDoPi(){
+     }*/
+    public static void calculoDoPi(int precisao){//numero de precisão do PI, limite do calculo.
         /*
-            'PI' = 4(1 - 1/3 + 1/5 - 1/7 + 1/9 ... )
-                         
-        */
-        int precisao            = 1000 ;                                                 //numero de precisão do PI, limite do calculo.
-        MathContext mc          = new MathContext(precisao, RoundingMode.HALF_EVEN);    //contexto matematico, onde é definido a precisão e o tipo de arredondamento.
+            'PI' = 4(1 - 1/3 + 1/5 - 1/7 + 1/9 ... )                         
+        */                                                       
+        MathContext mc          = new MathContext(precisao, RoundingMode.HALF_EVEN);    
+        //contexto matematico, onde é definido a precisão e o tipo de arredondamento.
 
         //definição dos numeros iniciais
         BigDecimal quatro       = new BigDecimal(4,mc);
@@ -111,8 +126,7 @@ public class Exemplos {
             pi                      = pi.add(tmp,mc);
             sinal                   = sinal.negate();
             denominador             = denominador.add(incremento);
-            System.out.println("\u03c0: ");
-            System.out.println(pi);
+            System.out.println("\n -- COM "+i+" CASAS DECIMAIS  -- "+pi+"\n");
         }
     }
 }
